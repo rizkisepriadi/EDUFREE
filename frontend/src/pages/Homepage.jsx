@@ -1,6 +1,7 @@
 import Header from "../components/Header";
 import Ilustration from "../assets/illustration.svg";
 import Benefit from "../components/Benefit";
+import About from "../assets/about.svg";
 
 export default function Homepage() {
   return (
@@ -134,7 +135,22 @@ export default function Homepage() {
           </div>
         </div>
       </div>
-      <Benefit />
+      <div className="bg-white pb-[150px]">
+        <Benefit />
+        <div className="pt-[148px] flex w-full gap-32 px-[70px]">
+          <div className="text-black">
+            <p className="opacity-75 pb-4 pt-12">Tentang Kami</p>
+            <h1 className="font-semibold text-[38px] pb-4">
+              EDUFREE Layanan E-Learning Gratis Untuk Membantu Kamu Bertumbuh
+            </h1>
+            <p className="opacity-75">
+              Edufree diharapkann bisa menjadi layanan yang bermanfaat bagi
+              kedepanya dalam bidang pendidikan
+            </p>
+          </div>
+          <img src={About} alt="" className="w-[575px]" />
+        </div>
+      </div>
     </div>
   );
 }
