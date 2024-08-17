@@ -2,6 +2,7 @@ import Header from "../components/Header";
 import Ilustration from "../assets/illustration.svg";
 import Benefit from "../components/Benefit";
 import About from "../assets/about.svg";
+import CoursesRecomendation from "../components/CoursesRecomendation";
 
 export default function Homepage() {
   return (
@@ -135,7 +136,7 @@ export default function Homepage() {
           </div>
         </div>
       </div>
-      <div className="bg-white pb-[150px]">
+      <div className="bg-white">
         <Benefit />
         <div className="pt-[148px] flex w-full gap-32 px-[70px]">
           <div className="text-black">
@@ -149,6 +150,36 @@ export default function Homepage() {
             </p>
           </div>
           <img src={About} alt="" className="w-[575px]" />
+        </div>
+        <CoursesRecomendation />
+      </div>
+      <div className="bg-base-200 text-secondary flex px-[77px] py-[83px] gap-[104px] ">
+        <div className="flex flex-col w-[346px]">
+          <div className="text-[28px] font-semibold w-full">
+            <h1>Kata Mereka Tentang</h1>
+            <h1>Kursus EDUFREE</h1>
+          </div>
+          <p className="text-base font-normal opacity-70">
+            EDUFREE telah dipercaya lebih dari 10.000 siswa{" "}
+          </p>
+        </div>
+        <div className="w-[843px]">
+          <h1 className="pb-[46px] w-full text-[26px]">
+            &ldquo;Materi yang disampaikan mudah dimengerti, kualitas instruktur
+            sangat baik serta responnya yang cepat. So, kursus disini sangat
+            sangat saya rekomendasikan!!&rdquo;
+          </h1>
+          <div className="flex gap-1">
+            <div className="avatar">
+              <div className="w-11 rounded-full">
+                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+              </div>
+            </div>
+            <div className="flex flex-col">
+              <h1 className="text-lg">Jernry Wilson</h1>
+              <p className="text-xs">Vice President</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
