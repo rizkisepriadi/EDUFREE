@@ -3,6 +3,7 @@ import Ilustration from "../assets/illustration.svg";
 import Benefit from "../components/Benefit";
 import About from "../assets/about.svg";
 import CoursesRecomendation from "../components/CoursesRecomendation";
+import FAQ from "../components/FAQ";
 
 export default function Homepage() {
   return (
@@ -182,6 +183,7 @@ export default function Homepage() {
           </div>
         </div>
       </div>
+      <FAQ />
     </div>
   );
 }
