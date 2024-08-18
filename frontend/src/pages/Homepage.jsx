@@ -4,11 +4,12 @@ import Benefit from "../components/Benefit";
 import About from "../assets/about.svg";
 import CoursesRecomendation from "../components/CoursesRecomendation";
 import FAQ from "../components/FAQ";
+import Registration from "../components/Registration";
 
 export default function Homepage() {
   return (
-    <div className="box-border font-[Poppins]">
-      <div className="h-[579px]">
+    <div>
+      <div className="h-[579px]  bg-base-100">
         <Header />
         <div className="flex pl-[70px] pt-[52px] pr-[106.26px] pb-[137px] gap-20 h-full">
           <div className="flex flex-col w-[597px]">
@@ -184,6 +185,7 @@ export default function Homepage() {
         </div>
       </div>
       <FAQ />
+      <Registration />
     </div>
   );
 }
