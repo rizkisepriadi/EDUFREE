@@ -1,5 +1,5 @@
 import Background1 from "../assets/bgRegistration.svg";
-import InputForm from "./InputForm";
+import { InputForm, Submit } from "./Form.module";
 
 export default function Registration() {
   return (
@@ -32,11 +32,7 @@ export default function Registration() {
             <InputForm placeholder={"Email"} />
             <InputForm placeholder={"Password"} />
           </div>
-          <input
-            type="submit"
-            value={"DAFTAR"}
-            className="btn btn-primary w-full mt-10 font-bold text-lg"
-          />
+          <Submit value={"Submit"}/>
         </form>
         <div className="flex justify-center pt-[27px]  text-lg">
           <p>Sudah punya akun?</p>
