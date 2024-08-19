@@ -5,6 +5,7 @@ import About from "../assets/about.svg";
 import CoursesRecomendation from "../components/CoursesRecomendation";
 import FAQ from "../components/FAQ";
 import Registration from "../components/Registration";
+import Blogs from "../components/Blogs";
 
 export default function Homepage() {
   return (
@@ -186,6 +187,7 @@ export default function Homepage() {
       </div>
       <FAQ />
       <Registration />
+      <Blogs />
     </div>
   );
 }
