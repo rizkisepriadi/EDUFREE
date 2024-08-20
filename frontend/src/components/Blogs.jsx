@@ -3,7 +3,7 @@ import Arrow from "../assets/arrow.svg";
 
 export default function Blogs() {
   return (
-    <div className="w-[1301px] pt-[159px] pl-[75px] text-secondary pb-[200px]">
+    <div className="pt-[159px] px-[75px] text-secondary pb-[200px]">
       <div className="flex justify-between w-full items-center  pb-16">
         <h1 className="font-semibold text-[38px]  text-secondary">
           Blog, Berita dan Event
