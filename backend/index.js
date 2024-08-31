@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import "dotenv/config";
 import cors from "cors";
+import userRoute from "./routes/userRoute.js"
 
 const app = express();
 const PORT = process.env.PORT;
@@ -13,6 +14,8 @@ app.get("/", (req, res) => {
   console.log(req);
   return res.status(234).send("Hey, Your connecting to Edufree");
 });
+
+app.use("/", userRoute);
 
 mongoose
   .connect(process.env.MONGO_URI)
