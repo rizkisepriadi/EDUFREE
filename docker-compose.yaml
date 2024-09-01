@@ -11,6 +11,8 @@ services:
       MONGO_URI: mongodb://rizki:rizkidatabase@mongo:27017/mongodb-ILP?authSource=admin
     depends_on:
       - mongo
+    volumes:
+      - ./backend:/backend
 
   mongo:
     image: mongo:latest

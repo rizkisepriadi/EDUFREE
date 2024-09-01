@@ -13,12 +13,12 @@ router.post("/login", async function (req, res) {
 
   try {
     const user = await User.login(email, password);
-
     const token = createToken(user._id);
 
     return res.status(201).json({ email: user.email, token });
   } catch (err) {
-    res.status(400).json({ error: err.massage });
+    console.log("err.message"); // Perbaikan typo
+    res.status(400).json({ error: err.message }); // Perbaikan typo
   }
 });
 
@@ -27,52 +27,51 @@ router.post("/register", async function (req, res) {
     const { name, email, password } = req.body;
 
     const user = await User.signUp(name, email, password);
-
     const token = createToken(user._id);
 
     return res.status(201).json({ email: user.email, token });
   } catch (err) {
-    res.status(400).json({ error: err.massage });
+    console.log(err.message); // Perbaikan typo
+    res.status(400).json({ error: err.message }); // Perbaikan typo
   }
 });
 
 router.get("/user/:id", async function (req, res) {
   try {
     const { id } = req.params;
+    const user = await User.findById(id); // Tambahkan 'await'
 
-    const user = User.findById(id);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
 
     return res.status(200).json(user);
   } catch (err) {
-    console.log(err.massage);
-    res.status(500).json({ error: err.massage });
+    console.log(err.message); // Perbaikan typo
+    res.status(500).json({ error: err.message }); // Perbaikan typo
   }
 });
 
 router.put("/user/:id/formaccount", async function (req, res) {
   try {
-    const { name, email, username, telp } = req.body;
-    if (!name || email || username || telp) {
+    const { name, email, username } = req.body;
+    if (!name || !email || !username) { // Perbaikan validasi
       return res.status(400).send({
-        message: "Send all required fields: name, email, username, telp",
+        message: "Send all required fields: name, email, username",
       });
     }
 
     const { id } = req.params;
+    const data = { name, email, username };
+    const user = await User.findByIdAndUpdate(id, data, { new: true }); // Tambahkan 'await'
 
-    const data = {
-      name,
-      email,
-      username,
-      telp,
-    };
-
-    const user = await User.findByIdAndUpdate(id, data);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
 
     return res.status(200).json(user);
   } catch (err) {
-    console.log(err.message);
-
+    console.log(err.message); // Perbaikan typo
     res.status(400).send({ message: err.message });
   }
 });
@@ -87,7 +86,6 @@ router.put("/user/:id/formsecurity", async function (req, res) {
     }
 
     const { id } = req.params;
-
     const user = await User.updatePassword(
       id,
       oldPassword,
@@ -95,12 +93,14 @@ router.put("/user/:id/formsecurity", async function (req, res) {
       retypePassword
     );
 
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
     return res.status(200).json({ message: "Password updated successfully" });
   } catch (error) {
     console.log(error.message);
-    res.status(500).json({
-      message: error.message,
-    });
+    res.status(500).json({ message: error.message });
   }
 });
 
