@@ -1,7 +1,40 @@
 import Background1 from "../assets/bgRegistration.svg";
 import { InputForm, Submit } from "./Form.module";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSignUp } from "../hooks/useSignup";
+import { useSnackbar } from "notistack";
 
 export default function Registration() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const { signup, isLoading, error } = useSignUp();
+  const { enqueueSnackbar } = useSnackbar();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await signup(name, email, password);
+      isLoading;
+      enqueueSnackbar("Register successful", {
+        variant: "success",
+        autoHideDuration: 500,
+      });
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
+    } catch (err) {
+      enqueueSnackbar(err.message || "Registration failed", {
+        variant: "error",
+        autoHideDuration: 3000,
+      });
+      console.log(error);
+    }
+  };
+
   return (
     <div className="flex bg-base-100 mx-[70px] h-[691px]">
       <div className="flex flex-col text-white relative w-[666px]">
@@ -26,17 +59,31 @@ export default function Registration() {
           Persiapkan diri untuk masa depan yang penuh <br />
           dengan bintang
         </p>
-        <form action="" className="w-[432px]">
+        <form className="w-[432px]" onSubmit={handleSubmit}>
           <div className="flex gap-4 flex-col">
-            <InputForm placeholder={"Your Name"} />
-            <InputForm placeholder={"Email"} />
-            <InputForm placeholder={"Password"} />
+            <InputForm
+              placeholder={"Your Name"}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <InputForm
+              placeholder={"Email"}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <InputForm
+              placeholder={"Password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
-          <Submit value={"Submit"}/>
+          <Submit value={"Submit"} />
         </form>
         <div className="flex justify-center pt-[27px]  text-lg">
           <p>Sudah punya akun?</p>
-          <a href="#" className="decoration-solid underline pl-1">Login</a>
+          <a href="#" className="decoration-solid underline pl-1">
+            Login
+          </a>
         </div>
       </div>
     </div>
